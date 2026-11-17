@@ -1,0 +1,50 @@
+{
+  "name": "@h-kakihara/iso20022-wire-kit",
+  "version": "0.1.0",
+  "description": "Zero-dependency ISO 20022 financial message builder, parser, and validator (pain.001, pacs.008, camt.053)",
+  "keywords": [
+    "fintech",
+    "iso20022",
+    "payments",
+    "sepa",
+    "swift",
+    "pain001",
+    "pacs008",
+    "camt053",
+    "banking"
+  ],
+  "license": "MIT",
+  "author": "h-kakihara",
+  "sideEffects": false,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test dist/tests/**/*.test.js",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.6.2"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/h-kakihara"
+  }
+}
