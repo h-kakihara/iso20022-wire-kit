@@ -1,0 +1,5 @@
+Contact: https://github.com/h-kakihara/iso20022-wire-kit/security/advisories/new
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://raw.githubusercontent.com/h-kakihara/iso20022-wire-kit/main/.github/SECURITY.txt
+Policy: https://github.com/h-kakihara/iso20022-wire-kit/blob/main/SECURITY.md
