@@ -40,22 +40,17 @@ Built for payment orchestration teams, neo-banks, treasury platforms, and ERP se
 
 Requires **Node.js >= 20.0.0** (ESM).
 
-**1. Direct Install from Signed GitHub Release (Recommended — Zero Registry Trust):**
+**1. Checksum-Verified Install from Signed GitHub Release (Recommended — Zero Registry Trust):**
+
+Download the pre-compiled release tarball and `.sha256` attestation via GitHub CLI (or directly from [Release v0.1.0 Assets](https://github.com/h-kakihara/iso20022-wire-kit/releases/tag/v0.1.0)):
 
 ```bash
-npm install [https://github.com/h-kakihara/iso20022-wire-kit/releases/download/v0.1.0/h-kakihara-iso20022-wire-kit-0.1.0.tgz](https://github.com/h-kakihara/iso20022-wire-kit/releases/download/v0.1.0/h-kakihara-iso20022-wire-kit-0.1.0.tgz)
-```
-
-**2. Air-Gapped / CI Checksum-Verified Install (SHA-256 Attested):**
-
-```bash
-curl -fsSLO [https://github.com/h-kakihara/iso20022-wire-kit/releases/download/v0.1.0/h-kakihara-iso20022-wire-kit-0.1.0.tgz](https://github.com/h-kakihara/iso20022-wire-kit/releases/download/v0.1.0/h-kakihara-iso20022-wire-kit-0.1.0.tgz)
-curl -fsSLO [https://github.com/h-kakihara/iso20022-wire-kit/releases/download/v0.1.0/h-kakihara-iso20022-wire-kit-0.1.0.tgz.sha256](https://github.com/h-kakihara/iso20022-wire-kit/releases/download/v0.1.0/h-kakihara-iso20022-wire-kit-0.1.0.tgz.sha256)
+gh release download v0.1.0 --repo h-kakihara/iso20022-wire-kit --pattern "*.tgz*"
 sha256sum -c h-kakihara-iso20022-wire-kit-0.1.0.tgz.sha256
 npm install ./h-kakihara-iso20022-wire-kit-0.1.0.tgz
 ```
 
-**3. Internal Enterprise Registry Mirror (Artifactory / Verdaccio / NPM):**
+**2. Internal Enterprise Registry Mirror (Artifactory / Verdaccio / NPM):**
 
 ```bash
 npm install @h-kakihara/iso20022-wire-kit
@@ -116,7 +111,13 @@ export function handleInboundBankXml(rawXml: string): void {
     case 'camt.053':
       // Guaranteed: OPBD + booked entries == CLBD for every statement
       for (const stmt of envelope.document.statements) {
-        console.log(`Audited statement ${stmt.id}: ${stmt.entries.length} entries`); } break; case 'pacs.002': for (const status of envelope.document.transactionStatuses) { if (status.transactionStatus === 'RJCT') { console.error(`Wire ${status.originalEndToEndId} rejected:`, status.statusReasons);
+        console.log('Audited statement:', stmt.id, 'entries:', stmt.entries.length);
+      }
+      break;
+    case 'pacs.002':
+      for (const status of envelope.document.transactionStatuses) {
+        if (status.transactionStatus === 'RJCT') {
+          console.error('Wire rejected:', status.originalEndToEndId, status.statusReasons);
         }
       }
       break;
