@@ -32,12 +32,17 @@ jobs:
       - name: Create deterministic tarball artifact
         run: npm pack
 
-      - name: Publish GitHub Release with tarball checksum
+      - name: Attach signed tarball and SHA-256 checksum to GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TARBALL=$(ls *.tgz | head -n 1)
           sha256sum "$TARBALL" > "$TARBALL.sha256"
-          gh release create "${GITHUB_REF_NAME}" "$TARBALL" "$TARBALL.sha256" \
-            --title "${GITHUB_REF_NAME}" \
-            --generate-notes
+          sleep 3
+          if gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
+            gh release upload "${GITHUB_REF_NAME}" "$TARBALL" "$TARBALL.sha256" --clobber
+          else
+            gh release create "${GITHUB_REF_NAME}" "$TARBALL" "$TARBALL.sha256" \
+              --title "${GITHUB_REF_NAME}" \
+              --generate-notes
+          fi
