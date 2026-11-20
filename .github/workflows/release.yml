@@ -1,0 +1,43 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  publish:
+    name: Verify & Publish Signed Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tag
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22 LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install toolchain and run full verification
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+          npm test
+
+      - name: Create deterministic tarball artifact
+        run: npm pack
+
+      - name: Publish GitHub Release with tarball checksum
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TARBALL=$(ls *.tgz | head -n 1)
+          sha256sum "$TARBALL" > "$TARBALL.sha256"
+          gh release create "${GITHUB_REF_NAME}" "$TARBALL" "$TARBALL.sha256" \
+            --title "${GITHUB_REF_NAME}" \
+            --generate-notes
