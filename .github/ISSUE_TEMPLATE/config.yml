@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Priority Issue Triage & Custom ISO 20022 Schema Requests (GitHub Sponsors)
+    url: https://github.com/sponsors/h-kakihara
+    about: Back the project to unlock 48-hour priority triage, regional clearing presets, and architecture reviews.
+  - name: Report a Private Security Vulnerability (XXE / Checksum / Crypto)
+    url: https://github.com/h-kakihara/iso20022-wire-kit/security/advisories/new
+    about: Submit sensitive security findings privately under coordinated disclosure.
