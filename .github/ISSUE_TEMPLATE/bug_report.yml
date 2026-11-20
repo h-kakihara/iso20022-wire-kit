@@ -1,0 +1,49 @@
+name: ISO 20022 Protocol / Validation Bug Report
+description: Report a deterministic XML serialization, parsing, or checksum discrepancy
+title: '[Bug]: '
+labels: ['bug', 'triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > **Data Privacy Notice:** Never paste live production customer names, real bank account numbers, or unredacted wire logs. Replace all identifiers with synthetic MOD-97-10 test IBANs (e.g., `DE89370400440532013000`).
+
+  - type: dropdown
+    id: schema
+    attributes:
+      label: Affected ISO 20022 Schema / Module
+      options:
+        - pain.001.001.09 (Customer Credit Transfer)
+        - pacs.008.001.08 (FI-to-FI Interbank Clearing)
+        - head.001.001.02 (Business Application Header)
+        - camt.053.001.08 (Bank-to-Customer Statement)
+        - pacs.002.001.10 (Payment Status Report)
+        - Currency / IBAN / BIC / LEI Validators
+        - XML Security Guard / Canonical Digest
+    validations:
+      required: true
+
+  - type: input
+    id: runtime
+    attributes:
+      label: Node.js & Package Version
+      placeholder: 'Node v22.11.0 / @h-kakihara/iso20022-wire-kit v0.1.0'
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal Reproducible Example (Synthetic Data Only)
+      description: Provide a minimal TypeScript/ESM snippet or synthetic XML fixture demonstrating the issue.
+      render: typescript
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected ISO 20022 / Network Rule Behavior
+      description: Cite the relevant XSD rule, SEPA EPC rulebook section, or SWIFT CBPR+ guideline if applicable.
+    validations:
+      required: true
