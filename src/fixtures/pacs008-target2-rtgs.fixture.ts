@@ -1,0 +1,109 @@
+export const BAH_TARGET2_RTGS_XML = `<?xml version="1.0" encoding="UTF-8"?>
+<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02">
+  <Fr>
+    <FIId>
+      <FinInstnId>
+        <BICFI>DEUTDEFFXXX</BICFI>
+      </FinInstnId>
+    </FIId>
+  </Fr>
+  <To>
+    <FIId>
+      <FinInstnId>
+        <BICFI>BNPAFRPPXXX</BICFI>
+      </FinInstnId>
+    </FIId>
+  </To>
+  <BizMsgIdr>BAH-TGT-20261120-01</BizMsgIdr>
+  <MsgDefIdr>pacs.008.001.08</MsgDefIdr>
+  <BizSvc>swift.cbprplus.02</BizSvc>
+  <CreDt>2026-11-20T09:15:00Z</CreDt>
+</AppHdr>
+`;
+
+export const PACS008_TARGET2_RTGS_XML = `<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08">
+  <FIToFICstmrCdtTrf>
+    <GrpHdr>
+      <MsgId>PACS008-TGT-20261120-01</MsgId>
+      <CreDtTm>2026-11-20T09:15:00Z</CreDtTm>
+      <NbOfTxs>1</NbOfTxs>
+      <CtrlSum>750000.00</CtrlSum>
+      <TtlIntrBkSttlmAmt Ccy="EUR">750000.00</TtlIntrBkSttlmAmt>
+      <IntrBkSttlmDt>2026-11-20</IntrBkSttlmDt>
+      <SttlmInf>
+        <SttlmMtd>CLRG</SttlmMtd>
+        <ClrSys>
+          <Cd>TGT</Cd>
+        </ClrSys>
+      </SttlmInf>
+      <InstgAgt>
+        <FinInstnId>
+          <BICFI>DEUTDEFFXXX</BICFI>
+        </FinInstnId>
+      </InstgAgt>
+      <InstdAgt>
+        <FinInstnId>
+          <BICFI>BNPAFRPPXXX</BICFI>
+        </FinInstnId>
+      </InstdAgt>
+    </GrpHdr>
+    <CdtTrfTxInf>
+      <PmtId>
+        <InstrId>TGT-INSTR-0001</InstrId>
+        <EndToEndId>E2E-TGT-0001</EndToEndId>
+        <TxId>TX-TGT-90001</TxId>
+        <UETR>eb6305c9-1f7f-49de-aed0-16487c27b42d</UETR>
+      </PmtId>
+      <PmtTpInf>
+        <InstrPrty>HIGH</InstrPrty>
+        <SvcLvl>
+          <Cd>URGP</Cd>
+        </SvcLvl>
+      </PmtTpInf>
+      <IntrBkSttlmAmt Ccy="EUR">750000.00</IntrBkSttlmAmt>
+      <ChrgBr>SLEV</ChrgBr>
+      <Dbtr>
+        <Nm>Rheinland Industrial Holding AG</Nm>
+      </Dbtr>
+      <DbtrAcct>
+        <Id>
+          <IBAN>DE89370400440532013000</IBAN>
+        </Id>
+        <Ccy>EUR</Ccy>
+      </DbtrAcct>
+      <DbtrAgt>
+        <FinInstnId>
+          <BICFI>DEUTDEFFXXX</BICFI>
+        </FinInstnId>
+      </DbtrAgt>
+      <CdtrAgt>
+        <FinInstnId>
+          <BICFI>BNPAFRPPXXX</BICFI>
+        </FinInstnId>
+      </CdtrAgt>
+      <Cdtr>
+        <Nm>Seine Aerospace Systems SAS</Nm>
+      </Cdtr>
+      <CdtrAcct>
+        <Id>
+          <IBAN>FR7630006000011234567890189</IBAN>
+        </Id>
+        <Ccy>EUR</Ccy>
+      </CdtrAcct>
+      <RmtInf>
+        <Strd>
+          <CdtrRefInf>
+            <Tp>
+              <CdOrPrtry>
+                <Cd>SCOR</Cd>
+              </CdOrPrtry>
+            </Tp>
+            <Ref>RF10INV2026001</Ref>
+          </CdtrRefInf>
+        </Strd>
+      </RmtInf>
+    </CdtTrfTxInf>
+  </FIToFICstmrCdtTrf>
+</Document>
+`;
