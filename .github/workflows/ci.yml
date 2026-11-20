@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Build, Audit & Test (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ['20', '22']
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install zero-runtime-dep toolchain
+        run: npm install --no-audit --no-fund
+
+      - name: Verify zero runtime dependencies invariant
+        run: |
+          node -e "
+            const fs = require('node:fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            if (pkg.dependencies && Object.keys(pkg.dependencies).length > 0) {
+              throw new Error('Runtime dependencies are strictly forbidden');
+            }
+          "
+
+      - name: Run strict TypeScript typecheck
+        run: npm run typecheck
+
+      - name: Compile ESM distribution
+        run: npm run build
+
+      - name: Execute unit and golden conformance test suite
+        run: npm test
+
+      - name: Execute end-to-end banking examples and benchmark
+        run: |
+          node examples/01-sepa-treasury-payout.mjs
+          node examples/02-swift-cbpr-correspondent-wire.mjs
+          node examples/03-camt053-auto-reconciliation.mjs
+          node examples/04-inbound-gateway-webhook-router.mjs
+          node benchmarks/throughput-bench.mjs
