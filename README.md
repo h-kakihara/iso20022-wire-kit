@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/h-kakihara/iso20022-wire-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/h-kakihara/iso20022-wire-kit/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/h-kakihara/iso20022-wire-kit/actions/workflows/codeql.yml/badge.svg)](https://github.com/h-kakihara/iso20022-wire-kit/actions/workflows/codeql.yml)
-[![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg)](#security--engineering-guarantees)
+[![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg)](#why-engineering-teams-choose-iso20022-wire-kit)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-ea4aaa?logo=github)](https://github.com/sponsors/h-kakihara)
 
@@ -19,7 +19,7 @@ Built for payment orchestration teams, neo-banks, treasury platforms, and ERP se
   * `pain.001` & `pacs.008` verify `NbOfTxs`, $10^{-4}$ scaled `CtrlSum`, and homogeneous `TtlIntrBkSttlmAmt` down to a single minor unit.
   * `camt.053` enforces the signed ledger balance equation ($\text{OPBD} + \sum \text{BOOK} = \text{CLBD}$) across overdraft sign flips (`DBIT` $\leftrightarrow$ `CRDT`).
 * **Pre-Tokenization Banking Validators:** Built-in ISO 13616 `IBAN` (MOD-97-10 + SEPA zone reachability), ISO 9362 `BIC8`/`BIC11`, ISO 17442 `LEI`, ISO 11649 `SCOR` (`RF` creditor reference), and SWIFT CBPR+ X-charset / T26 slash placement guards.
-* **Hardened XML & Cryptographic Integrity:** Pre-parse XXE / `DOCTYPE` firewall, element nesting depth caps, canonical XML normalization, and constant-time SHA-256 / HMAC-SHA256 wire verification via `node:crypto`.
+* **Hardened XML & Cryptographic Integrity:** Pre-parse O(n) XXE / `DOCTYPE` firewall, element nesting depth caps, canonical XML normalization, and constant-time SHA-256 / HMAC-SHA256 wire verification via `node:crypto`.
 * **Zero Runtime Dependencies:** Auditable in a single sitting by bank compliance and AppSec teams.
 
 ---
@@ -38,7 +38,24 @@ Built for payment orchestration teams, neo-banks, treasury platforms, and ERP se
 
 ## Installation
 
-Requires **Node.js >= 20.0.0** (ESM):
+Requires **Node.js >= 20.0.0** (ESM).
+
+**1. Direct Install from Signed GitHub Release (Recommended — Zero Registry Trust):**
+
+```bash
+npm install [https://github.com/h-kakihara/iso20022-wire-kit/releases/download/v0.1.0/h-kakihara-iso20022-wire-kit-0.1.0.tgz](https://github.com/h-kakihara/iso20022-wire-kit/releases/download/v0.1.0/h-kakihara-iso20022-wire-kit-0.1.0.tgz)
+```
+
+**2. Air-Gapped / CI Checksum-Verified Install (SHA-256 Attested):**
+
+```bash
+curl -fsSLO [https://github.com/h-kakihara/iso20022-wire-kit/releases/download/v0.1.0/h-kakihara-iso20022-wire-kit-0.1.0.tgz](https://github.com/h-kakihara/iso20022-wire-kit/releases/download/v0.1.0/h-kakihara-iso20022-wire-kit-0.1.0.tgz)
+curl -fsSLO [https://github.com/h-kakihara/iso20022-wire-kit/releases/download/v0.1.0/h-kakihara-iso20022-wire-kit-0.1.0.tgz.sha256](https://github.com/h-kakihara/iso20022-wire-kit/releases/download/v0.1.0/h-kakihara-iso20022-wire-kit-0.1.0.tgz.sha256)
+sha256sum -c h-kakihara-iso20022-wire-kit-0.1.0.tgz.sha256
+npm install ./h-kakihara-iso20022-wire-kit-0.1.0.tgz
+```
+
+**3. Internal Enterprise Registry Mirror (Artifactory / Verdaccio / NPM):**
 
 ```bash
 npm install @h-kakihara/iso20022-wire-kit
