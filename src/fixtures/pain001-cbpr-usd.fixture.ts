@@ -1,0 +1,101 @@
+export const PAIN001_CBPR_USD_XML = `<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.09">
+  <CstmrCdtTrfInitn>
+    <GrpHdr>
+      <MsgId>FIX-CBPR-USD-20261120</MsgId>
+      <CreDtTm>2026-11-20T14:00:00Z</CreDtTm>
+      <NbOfTxs>1</NbOfTxs>
+      <CtrlSum>125000.50</CtrlSum>
+      <InitgPty>
+        <Nm>Kakihara Infrastructure Corp</Nm>
+        <PstlAdr>
+          <StrtNm>California Street</StrtNm>
+          <BldgNb>555</BldgNb>
+          <PstCd>94104</PstCd>
+          <TwnNm>San Francisco</TwnNm>
+          <CtrySubDvsn>CA</CtrySubDvsn>
+          <Ctry>US</Ctry>
+        </PstlAdr>
+        <Id>
+          <OrgId>
+            <LEI>5493001KJTIIGC8Y1R12</LEI>
+          </OrgId>
+        </Id>
+      </InitgPty>
+    </GrpHdr>
+    <PmtInf>
+      <PmtInfId>FIX-USD-WIRE-01</PmtInfId>
+      <PmtMtd>TRF</PmtMtd>
+      <BtchBookg>false</BtchBookg>
+      <NbOfTxs>1</NbOfTxs>
+      <CtrlSum>125000.50</CtrlSum>
+      <PmtTpInf>
+        <InstrPrty>HIGH</InstrPrty>
+        <SvcLvl>
+          <Cd>URGP</Cd>
+        </SvcLvl>
+        <CtgyPurp>
+          <Cd>TREA</Cd>
+        </CtgyPurp>
+      </PmtTpInf>
+      <ReqdExctnDt>
+        <Dt>2026-11-20</Dt>
+      </ReqdExctnDt>
+      <Dbtr>
+        <Nm>Kakihara Infrastructure Corp</Nm>
+      </Dbtr>
+      <DbtrAcct>
+        <Id>
+          <Othr>
+            <Id>008192837465</Id>
+          </Othr>
+        </Id>
+        <Ccy>USD</Ccy>
+      </DbtrAcct>
+      <DbtrAgt>
+        <FinInstnId>
+          <BICFI>CHASUS33XXX</BICFI>
+        </FinInstnId>
+      </DbtrAgt>
+      <ChrgBr>DEBT</ChrgBr>
+      <CdtTrfTxInf>
+        <PmtId>
+          <InstrId>INSTR-CBPR-778</InstrId>
+          <EndToEndId>E2E-TREASURY-778</EndToEndId>
+          <UETR>97ed4827-7b6f-4491-a06f-b548d5a7512d</UETR>
+        </PmtId>
+        <Amt>
+          <InstdAmt Ccy="USD">125000.50</InstdAmt>
+        </Amt>
+        <CdtrAgt>
+          <FinInstnId>
+            <BICFI>UBSWCHZH80A</BICFI>
+          </FinInstnId>
+        </CdtrAgt>
+        <Cdtr>
+          <Nm>Helvetia Vault Custody AG</Nm>
+          <PstlAdr>
+            <StrtNm>Bahnhofstrasse</StrtNm>
+            <BldgNb>45</BldgNb>
+            <PstCd>8001</PstCd>
+            <TwnNm>Zurich</TwnNm>
+            <Ctry>CH</Ctry>
+          </PstlAdr>
+        </Cdtr>
+        <CdtrAcct>
+          <Id>
+            <IBAN>CH9300762011623852957</IBAN>
+          </Id>
+          <Ccy>USD</Ccy>
+        </CdtrAcct>
+        <Purp>
+          <Cd>TREA</Cd>
+        </Purp>
+        <RmtInf>
+          <Ustrd>Liquidity Sweep Settlement Q4</Ustrd>
+        </RmtInf>
+      </CdtTrfTxInf>
+    </PmtInf>
+  </CstmrCdtTrfInitn>
+</Document>
+`;
